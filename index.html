@@ -1,1 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apocalypse Girl | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --accent: #ff3e3e;
+            --card: #151515;
+            --nav-bg: rgba(0, 0, 0, 0.7);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
+        [data-theme="light"] {
+            --bg: #f8f9fa;
+            --text: #1a1a1a;
+            --accent: #e63946;
+            --card: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: -1px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-toggle {
+            background: rgba(128, 128, 128, 0.1);
+            border: 1px solid rgba(128, 128, 128, 0.2);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-toggle:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .video-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
+
+        [data-theme="light"] video {
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 0.9;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        /* --- Content Section --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 5%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(128, 128, 128, 0.1);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 50px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(128, 128, 128, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 5%; }
+            .btn-toggle { padding: 6px 12px; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Apocalypse Girl</div>
+        <div class="controls">
+            <button class="btn-toggle" onclick="toggleLanguage()" id="langBtn">한국어</button>
+            <button class="btn-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Light</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="video-wrapper">
+            <video autoplay muted loop playsinline id="bgVideo">
+                <source src="main/asset/video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <h1 data-en="Apocalypse Girl" data-ko="어포칼립스 걸">Apocalypse Girl</h1>
+        <p data-en="A journey through the silence of a fallen world." data-ko="무너진 세상의 정적 속을 거니는 여정.">A journey through the silence of a fallen world.</p>
+    </header>
+
+    <main class="container">
+        <div class="grid">
+            <div class="card">
+                <h3 data-en="Cinematic Vision" data-ko="시네마틱 비전">Cinematic Vision</h3>
+                <p data-en="High-fidelity visuals that bring the end of the world to life with haunting beauty." 
+                   data-ko="종말의 아름다움을 생생하게 구현하는 고화질 비주얼을 경험하세요."></p>
+            </div>
+            <div class="card">
+                <h3 data-en="Atmospheric Sound" data-ko="공간적 사운드">Atmospheric Sound</h3>
+                <p data-en="Immerse yourself in a soundscape designed to evoke isolation and wonder." 
+                   data-ko="고립과 경외감을 불러일으키는 사운드스케이프에 몰입해 보세요."></p>
+            </div>
+            <div class="card">
+                <h3 data-en="Storytelling" data-ko="스토리텔링">Storytelling</h3>
+                <p data-en="Discover the hidden fragments of a past civilization through the eyes of the survivor." 
+                   data-ko="생존자의 시선으로 과거 문명의 숨겨진 파편들을 발견하세요."></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Apocalypse Girl Project. Created for Soomin.</p>
+    </footer>
+
+    <script>
+        // Language Logic
+        let currentLang = 'en';
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ko' : 'en';
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.innerText = el.getAttribute(`data-${currentLang}`);
+            });
+            document.getElementById('langBtn').innerText = currentLang === 'en' ? '한국어' : 'English';
+        }
+
+        // Theme Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeBtn = document.getElementById('themeBtn');
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            
+            if (isDark) {
+                html.setAttribute('data-theme', 'light');
+                themeBtn.innerText = '🌙 Dark';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeBtn.innerText = '☀️ Light';
+            }
+        }
+
+        // Ensure video attempts to play on mobile
+        window.addEventListener('load', () => {
+            const video = document.getElementById('bgVideo');
+            video.play().catch(() => {
+                console.log("Autoplay prevented. Waiting for user interaction.");
+            });
+        });
+    </script>
+</body>
+</html>
